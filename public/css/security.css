@@ -1,0 +1,195 @@
+@import "fonts/fonts.css";
+.flex, #submit, #bottom #bottom-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+body {
+  background: url("../images/background.jpg");
+  font-family: "Trebuchet MS", sans-serif;
+  display: flex;
+  justify-content: center;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box !important;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:visited {
+  color: inherit;
+  text-decoration: none;
+}
+
+#container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  width: 500px;
+  height: 425px;
+  background-color: white;
+  border: 1px solid #f6f6f6;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(105, 108, 109, 0.7), 0 0 8px 5px rgba(208, 223, 226, 0.4) inset;
+}
+
+h1 {
+  font-family: "FranchiseRegular", serif;
+  font-size: 48px;
+  font-weight: bold;
+  width: 100%;
+  margin-top: 20px;
+  text-align: center;
+  color: #066a75;
+  background: repeating-linear-gradient(-45deg, #134953, #134953 15px, #38646b 15px, #38646b 30px, #134953 30px);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 15px;
+}
+
+h1::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 2px;
+  margin-top: 10px;
+  background: -webkit-gradient(left, rgba(147, 184, 189, 0) 0%, rgba(147, 184, 189, 0.8) 20%, #93b8bd 53%, rgba(147, 184, 189, 0.8) 79%, rgba(147, 184, 189, 0) 100%);
+  background: -webkit-linear-gradient(left, rgba(147, 184, 189, 0) 0%, rgba(147, 184, 189, 0.8) 20%, #93b8bd 53%, rgba(147, 184, 189, 0.8) 79%, rgba(147, 184, 189, 0) 100%);
+  background: -o-linear-gradient(left, rgba(147, 184, 189, 0) 0%, rgba(147, 184, 189, 0.8) 20%, #93b8bd 53%, rgba(147, 184, 189, 0.8) 79%, rgba(147, 184, 189, 0) 100%);
+  background: -ms-linear-gradient(left, rgba(147, 184, 189, 0) 0%, rgba(147, 184, 189, 0.8) 20%, #93b8bd 53%, rgba(147, 184, 189, 0.8) 79%, rgba(147, 184, 189, 0) 100%);
+  background: linear-gradient(left, rgba(147, 184, 189, 0) 0%, rgba(147, 184, 189, 0.8) 20%, #93b8bd 53%, rgba(147, 184, 189, 0.8) 79%, rgba(147, 184, 189, 0) 100%);
+}
+
+#bottom {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 75px;
+  background: repeating-linear-gradient(-45deg, #f7f7f7, #f7f7f7 15px, #e1eaeb 15px, #e1eaeb 30px, #f7f7f7 30px);
+}
+#bottom #bottom-text {
+  color: black;
+  margin-right: 20px;
+  font-size: 18px;
+}
+#bottom #bottom-button {
+  width: 130px;
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid #cbd5d6;
+  font-weight: bold;
+  font-size: 16px;
+  margin-right: 20px;
+  transition: border 0.4s linear;
+}
+#bottom #bottom-button p {
+  color: #1ab6d1;
+}
+#bottom #rbottom-button:hover {
+  border: 1px solid #1ab6d1;
+}
+
+label {
+  display: block;
+}
+
+label::after, .icon {
+  content: attr(data-icon);
+  font-family: "FontomasCustomRegular", serif;
+  color: #6a9fab;
+  position: absolute;
+  left: 58px;
+}
+
+.login #username-label::after {
+  top: 126px;
+}
+.login #password-label::after {
+  top: 194px;
+}
+
+#register div {
+  margin-bottom: 10px;
+}
+
+#username-icon {
+  top: 126px;
+}
+
+#mail-icon {
+  top: 196px;
+}
+
+#password-icon {
+  top: 261px;
+}
+
+#password-confirm-icon {
+  top: 329px;
+}
+
+.inline-label {
+  display: inline-block;
+}
+
+.input-container {
+  margin-bottom: 10px;
+}
+
+input[type=text], input[type=password], input[type=email] {
+  width: 400px;
+  margin-top: 4px;
+  padding: 10px 5px 10px 32px;
+  border: 1px solid #b2b2b2;
+  border-radius: 3px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 1px 4px 0 rgba(168, 168, 168, 0.6) inset;
+}
+
+input[type=submit] {
+  margin-top: 10px;
+  width: 150px;
+  font-size: 24px;
+  color: white;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: #3d9db3;
+  box-shadow: 0 1px 6px 4px rgba(0, 0, 0, 0.07) inset, 0 0 0 3px #fefefe, 0px 5px 3px 3px #d2d2d2;
+}
+
+#submit {
+  width: 100%;
+  margin-top: -30px;
+}
+
+#error {
+  color: red;
+  margin-top: 13px;
+  width: 100%;
+  text-align: center;
+}
+#error ul {
+  list-style-type: none;
+}
+#error ul li {
+  margin-bottom: 9999px;
+}
+
+#captcha-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0;
+}
+
+/*# sourceMappingURL=security.css.map */

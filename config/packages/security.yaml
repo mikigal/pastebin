@@ -1,0 +1,27 @@
+security:
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    providers:
+        default_provider:
+            entity: {class: App\Entity\User}
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            anonymous: true
+            guard:
+                authenticators:
+                    - App\Security\LoginAuthenticator
+            logout:
+                path: /logout
+                target: /
+            remember_me:
+                secret: "%kernel.secret%"
+                lifetime: 604800
+                remember_me_parameter: "remember"
+                path: /
+    encoders:
+        App\Entity\User:
+            algorithm: sha512
+            encode_as_base64: false
+            iterations: 10

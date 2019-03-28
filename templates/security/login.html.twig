@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{{ asset('css/security.css') }}" />
+</head>
+<body>
+<div id="container">
+    <h1>LOGIN</h1>
+    <div id="separator"></div>
+    <form method="post" class="login">
+        <div class="input-container">
+            <label for="username" id="username-label" data-icon="u">Username or mail address</label>
+            <input id="username" name="username" required="required" type="text" placeholder="Username"/>
+        </div>
+        <div class="input-container">
+            <label for="password" id="password-label" data-icon="p">Password</label>
+            <input id="password" name="password" required="required" type="password" placeholder="Password"/>
+        </div>
+        <div class="input-container">
+            <input type="checkbox" name="remember" id="remember" />
+            <label for="remember" id="remember-label" class="inline-label">Remember me</label>
+        </div>
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+        <input type="submit" value="Login" />
+    </form>
+
+    {% if error %}
+        <div id="error">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    <div id="bottom">
+        <p id="bottom-text">Not a member?</p>
+        <a href="{{ path('app_register') }}" id="bottom-button">
+            <p>REGISTER NOW</p>
+        </a>
+    </div>
+</div>
+</body>
+</html>

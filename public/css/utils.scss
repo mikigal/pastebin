@@ -1,0 +1,13 @@
+@mixin linear-gradient($property...) {
+	background: -webkit-gradient($property);
+	background: -webkit-linear-gradient($property);
+	background: -o-linear-gradient($property);
+	background: -ms-linear-gradient($property);
+	background: linear-gradient($property);
+}
+
+.flex {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{{ asset('css/security.css') }}" />
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+<body>
+<div id="container" style="height: 650px;">
+    <h1>REGISTER</h1>
+    <div id="separator"></div>
+
+    <div id="register">
+        <p class="icon" id="username-icon">u</p>
+        <p class="icon" id="mail-icon">e</p>
+        <p class="icon" id="password-icon">p</p>
+        <p class="icon" id="password-confirm-icon">p</p>
+
+        {{ form_start(form) }}
+
+        {{ form_row(form.username) }}
+        {{ form_row(form.mail) }}
+        {{ form_row(form.password) }}
+
+        <div>
+            {{ form_widget(form.tos) }}
+            {{ form_label(form.tos) }}
+        </div>
+        <div id="captcha-container">
+            <div class="g-recaptcha" data-sitekey="{{ recaptcha }}"></div>
+        </div>
+
+        <div id="submit">
+            <input type="submit" value="Register" />
+        </div>
+
+        <div id="error">
+            {{ form_errors(form) }}
+        </div>
+
+        {{ form_end(form) }}
+    </div>
+
+    <div id="bottom">
+        <p id="bottom-text">Are you a member?</p>
+        <a href="{{ path('app_login') }}" id="bottom-button">
+            <p>LOGIN</p>
+        </a>
+    </div>
+</div>
+</body>
+</html>
