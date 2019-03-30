@@ -1,0 +1,106 @@
+@import "fonts/fonts.css";
+@import "utils";
+
+body {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box !important;
+	font-family: 'Montserrat', serif;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+a:hover {
+	color: inherit;
+}
+
+nav {
+	@extend .flex;
+	justify-content: space-between !important;
+	color: white;
+
+	width: 100vw;
+	height: 50px;
+	background: #023859;
+	font-size: 18px;
+
+	position: sticky;
+	position: -webkit-sticky;
+	top: 0;
+
+	#global {
+		@extend .flex;
+		width: 40vw;
+		margin-left: 15vw;
+
+		#logo {
+			min-width: 150px;
+			height: 35px;
+			//background: url("../images/logo.png"); TODO: Create logo placeholder
+			background: white;
+
+			margin-left: 1vw;
+			margin-right: 1vw;
+		}
+
+		#create {
+			background: #61BA65;
+
+			text-align: center;
+			min-width: 140px;
+			padding-top: 6px;
+			padding-bottom: 6px;
+
+			border-radius: 3px;
+			font-size: 19px;
+		}
+
+		#create::before {
+			@extend .icon;
+			content: '\f067';
+		}
+
+		a {
+			margin-left: 1vw;
+			margin-right: 1vw;
+		}
+
+		@media (max-width: 950px) {
+			.optional {
+				display: none;
+			}
+		}
+	}
+
+
+	#account {
+		@extend .flex;
+		margin-right: 10vw;
+
+		a {
+			font-size: 25px;
+			margin-left: 0.8vw;
+			margin-right: 0.8vw;
+			display: inline-block;
+		}
+
+		#username {
+			display: inline-block;
+			font-size: 16px;
+		}
+
+		img {
+			margin-left: 1vw;
+			max-height: 40px;
+			max-width: 40px;
+		}
+
+		.fa-chevron-down {
+			color: #026096;
+			margin-left: 0.4vw;
+		}
+	}
+}

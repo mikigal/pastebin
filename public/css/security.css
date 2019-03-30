@@ -5,6 +5,23 @@
   align-items: center;
 }
 
+.icon {
+  font-family: "Font Awesome 5 Free", serif;
+  font-weight: 900;
+  margin-right: 5px;
+}
+
+.icon-empty {
+  font-family: "Font Awesome 5 Free", serif;
+  font-weight: 400;
+  margin-right: 5px;
+}
+
+.icon-brand {
+  font-family: "Font Awesome 5 Brands", serif;
+  margin-right: 5px;
+}
+
 body {
   background: url("../images/background.jpg");
   font-family: "Trebuchet MS", sans-serif;
