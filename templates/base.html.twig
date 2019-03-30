@@ -30,16 +30,24 @@
     </div>
 </nav>
 
-<div id="sidebar">
-    {% block sidebar %}
+<div id="container">
+    <div id="content">
+        {% block content %}
 
-    {% endblock %}
-</div>
+        {% endblock %}
+    </div>
 
-<div id="content">
-    {% block content %}
+    <div id="sidebar" class="optional">
+        <h1>Last Pastes</h1>
 
-    {% endblock %}
+        {% for i in 1..8 %}
+            <div class="separator"></div>
+            <a href="#">Placeholder</a>
+            <p>Java | {{ i }} minutes ago</p>
+        {% endfor %}
+
+        <div class="separator"></div>
+    </div>
 </div>
 </body>
 </html>
