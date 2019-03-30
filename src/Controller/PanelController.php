@@ -13,7 +13,7 @@ class PanelController extends AbstractController {
 
     /**
      * @IsGranted("ROLE_USER")
-     * @Route("/")
+     * @Route("/", name="app_panel")
      */
     public function root() {
         return $this->render("panel/panel.html.twig", []);

@@ -15,15 +15,18 @@
         <a href="#" class="optional">API</a>
     </div>
 
-    <div id="account"> <!--TODO: Add blocks-->
+    <div id="account">
         <a href="#"><i class="fas fa-paste"></i></a>
-        <a href="#"><i class="fas fa-cog"></i></a>
+        <a href="{{ path('app_panel') }}"><i class="fas fa-cog"></i></a>
 
-        <p id="username">Guest user</p>
-        <img src="{{ asset('images/guest.png') }}" alt=""/>
-        <div id="dropdown">
-            <i class="fas fa-chevron-down"></i>
-        </div>
+        {% if app.user %}
+            <p id="username">{{ app.user.username }}</p>
+            <img src="{{ asset('images/guest.png') }}" alt=""/>
+            <a href="{{ path('app_logout') }}"><i class="fas fa-sign-out-alt"></i></a> <!-- TODO: User avatars -->
+        {% else %}
+            <p id="username">Guest user</p>
+            <a href="{{ path('app_panel') }}"><img src="{{ asset('images/guest.png') }}" alt=""/></a>
+        {% endif %}
     </div>
 </nav>
 

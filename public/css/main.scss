@@ -75,7 +75,6 @@ nav {
 		}
 	}
 
-
 	#account {
 		@extend .flex;
 		margin-right: 10vw;
@@ -96,11 +95,6 @@ nav {
 			margin-left: 1vw;
 			max-height: 40px;
 			max-width: 40px;
-		}
-
-		.fa-chevron-down {
-			color: #026096;
-			margin-left: 0.4vw;
 		}
 	}
 }
