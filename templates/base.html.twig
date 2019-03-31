@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>{% block title %}pastebin{% endblock %}</title>
-    <link rel="stylesheet" href="{{ asset('css/main.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/base.css') }}"/>
+    <meta charset="UTF-8" />
+    {% block head %}
+        <title>pastebin</title>
+    {% endblock %}
 </head>
 <body>
 <nav>
@@ -20,19 +23,19 @@
         <a href="{{ path('app_panel') }}"><i class="fas fa-cog"></i></a>
 
         {% if app.user %}
-            <p id="username">{{ app.user.username }}</p>
-            <img src="{{ asset('images/guest.png') }}" alt=""/>
-            <a href="{{ path('app_logout') }}"><i class="fas fa-sign-out-alt"></i></a> <!-- TODO: User avatars -->
+            <a href="{{ path('app_panel') }}" id="username">{{ app.user.username }}</a>
+            <a href="{{ path('app_panel') }}"><img src="{{ asset('images/guest.png') }}" alt=""/></a> <!-- TODO: User avatars -->
+            <a href="{{ path('app_logout') }}"><i class="fas fa-sign-out-alt"></i></a>
         {% else %}
-            <p id="username">Guest user</p>
-            <a href="{{ path('app_panel') }}"><img src="{{ asset('images/guest.png') }}" alt=""/></a>
+            <a href="{{ path('app_login') }}" id="username">Guest user</a>
+            <a href="{{ path('app_login') }}"><img src="{{ asset('images/guest.png') }}" alt=""/></a>
         {% endif %}
     </div>
 </nav>
 
 <div id="container">
     <div id="content">
-        {% block content %}
+        {% block body %}
 
         {% endblock %}
     </div>

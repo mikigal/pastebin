@@ -18,5 +18,4 @@ class PanelController extends AbstractController {
     public function root() {
         return $this->render("panel/panel.html.twig", []);
     }
-
 }

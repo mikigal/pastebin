@@ -1,6 +1,26 @@
 {% extends 'base.html.twig' %}
-{% block title %}Homepage{% endblock %}
+{% block head %}
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
+{% endblock %}
 
-{% block content %}
-    BODY
+{% block body %}
+    {{ form_start(form) }}
+
+    {{ form_widget(form.content) }}
+    {{ form_row(form.title) }}
+    {{ form_row(form.syntax) }}
+    {{ form_row(form.visibility) }}
+
+    <div id="captcha-container">
+        <div class="g-recaptcha" data-sitekey="{{ recaptcha }}"></div>
+    </div>
+
+    <input type="submit" value="Upload" />
+
+    <div id="error">
+        {{ form_errors(form) }}
+    </div>
+
+    {{ form_end(form) }}
 {% endblock %}

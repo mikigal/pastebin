@@ -98,6 +98,7 @@ nav #account a:hover {
 nav #account #username {
   display: inline-block;
   font-size: 16px;
+  margin-right: 0;
 }
 nav #account img {
   margin-left: 1vw;
@@ -156,4 +157,4 @@ nav #account img {
   }
 }
 
-/*# sourceMappingURL=main.css.map */
+/*# sourceMappingURL=base.css.map */
