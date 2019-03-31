@@ -7,19 +7,31 @@
 {% block body %}
     {{ form_start(form) }}
 
+    <h1>Create new paste</h1>
+
     {{ form_widget(form.content) }}
-    {{ form_row(form.title) }}
-    {{ form_row(form.syntax) }}
-    {{ form_row(form.visibility) }}
 
-    <div id="captcha-container">
-        <div class="g-recaptcha" data-sitekey="{{ recaptcha }}"></div>
-    </div>
+    <h2>Optional paste settings</h2>
 
-    <input type="submit" value="Upload" />
+    <div id="inputs">
+        <div id="labels">
+            {{ form_label(form.title) }}
+            {{ form_label(form.syntax) }}
+            {{ form_label(form.visibility) }}
+        </div>
 
-    <div id="error">
-        {{ form_errors(form) }}
+        <div id="widgets">
+            {{ form_widget(form.title) }}
+            {{ form_widget(form.syntax) }}
+            {{ form_widget(form.visibility) }}
+
+            <div class="g-recaptcha" data-sitekey="{{ recaptcha }}"></div>
+            <input type="submit" value="Create new paste" />
+
+            <div id="error">
+                {{ form_errors(form) }}
+            </div>
+        </div>
     </div>
 
     {{ form_end(form) }}

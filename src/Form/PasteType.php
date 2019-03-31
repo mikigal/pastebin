@@ -21,9 +21,10 @@ class PasteType extends AbstractType {
             ->add('title', TextType::class, [
                 'error_bubbling' => true,
                 'required' => false,
+                'label' => 'Title:'
             ])
             ->add('syntax', ChoiceType::class, [
-                'label' => 'Syntax',
+                'label' => 'Syntax:',
                 'choices' => [
                     'None' => 'None',
                     'Java' => 'Java',
@@ -32,7 +33,7 @@ class PasteType extends AbstractType {
                 ]
             ])
             ->add('visibility', ChoiceType::class, [
-                'label' => 'Visibility',
+                'label' => 'Visibility:',
                 'choices' => [
                     'Public' => 1,
                     'Unlisted' => 2,
