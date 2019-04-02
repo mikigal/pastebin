@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Entity\Paste;
 use App\Form\PasteType;
 use App\Service\RecaptchaService;
-use Psr\Log\LoggerInterface;
+use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,7 +16,7 @@ class RootController extends AbstractController {
     /**
      * @Route("/", name="app_root")
      */
-    public function root(Request $request, LoggerInterface $logger, RecaptchaService $recaptchaService) {
+    public function root(Request $request, RecaptchaService $recaptchaService) {
         $paste = new Paste();
         $form = $this->createForm(PasteType::class, $paste);
         $form->handleRequest($request);
@@ -30,7 +30,19 @@ class RootController extends AbstractController {
                 ]);
             }
 
-            $logger->alert("Submitted!");
+            $user = $this->get('security.token_storage')->getToken()->getUser();
+            $paste->setOwner($user == 'anon.' ? null : $user->getId());
+            $paste->setUploadDate(new DateTime());
+            $paste->setContent(base64_encode($paste->getContent()));
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($paste);
+            $entityManager->flush();
+
+            return $this->render('index.html.twig', [ //TODO: Redirect to preview
+                'form' => $form->createView(),
+                'recaptcha' => getenv('RECAPTCHA_SITEKEY')
+            ]);
         }
 
         return $this->render('index.html.twig', [

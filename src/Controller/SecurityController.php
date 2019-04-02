@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\RegistrationType;
 use App\Service\RecaptchaService;
+use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
@@ -52,7 +53,7 @@ class SecurityController extends AbstractController {
 
             $user->setSalt(md5(uniqid()));
             $user->setPassword($encoderFactory->getEncoder(User::class)->encodePassword($form->get("password")->getData(), $user->getSalt()));
-            $user->setRegisterDate(new \DateTime());
+            $user->setRegisterDate(new DateTime());
 
             $entityManager = $this->getDoctrine()->getManager();
 

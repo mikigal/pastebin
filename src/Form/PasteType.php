@@ -39,8 +39,7 @@ class PasteType extends AbstractType {
                     'Unlisted' => 2,
                     'Private (Account needed)' => 3
                 ]
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver) {
