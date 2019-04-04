@@ -12,39 +12,16 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  * @method Paste[]    findAll()
  * @method Paste[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class PasteRepository extends ServiceEntityRepository
-{
-    public function __construct(RegistryInterface $registry)
-    {
+class PasteRepository extends ServiceEntityRepository {
+    public function __construct(RegistryInterface $registry) {
         parent::__construct($registry, Paste::class);
     }
 
-    // /**
-    //  * @return Paste[] Returns an array of Paste objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
+    public function findOneByName($value): ?Paste {
         return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
+            ->andWhere('p.name = :name')
+            ->setParameter('name', $value)
             ->getQuery()
-            ->getResult()
-        ;
+            ->getOneOrNullResult();
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Paste
-    {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

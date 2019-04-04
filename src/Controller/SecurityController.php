@@ -51,6 +51,14 @@ class SecurityController extends AbstractController {
                 ]);
             }
 
+            if (preg_match('/\s/', $user->getUsername())) {
+                $form->addError(new FormError("Username can't contain spaces"));
+                return $this->render("security/register.html.twig", [
+                    "form" => $form->createView(),
+                    "recaptcha" => getenv("RECAPTCHA_SITEKEY")
+                ]);
+            }
+
             $user->setSalt(md5(uniqid()));
             $user->setPassword($encoderFactory->getEncoder(User::class)->encodePassword($form->get("password")->getData(), $user->getSalt()));
             $user->setRegisterDate(new DateTime());
