@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\RegistrationType;
+use App\Repository\PasteRepository;
 use App\Service\RecaptchaService;
 use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -20,20 +21,25 @@ class SecurityController extends AbstractController {
     /**
      * @Route("/login", name="app_login")
      */
-    public function login(AuthenticationUtils $authenticationUtils): Response {
+    public function login(PasteRepository $pasteRepository, AuthenticationUtils $authenticationUtils): Response {
         if ($this->getUser() != null) {
             return $this->render("index.html.twig");
         }
 
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();
-        return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+
+        return $this->render('security/login.html.twig', [
+            'last_username' => $lastUsername,
+            'error' => $error,
+            'sidebar' => $pasteRepository->getSidebar()
+        ]);
     }
 
     /**
      * @Route("/register", name="app_register")
      */
-    public function register(Request $request, EncoderFactoryInterface $encoderFactory, RecaptchaService $recaptchaService) {
+    public function register(Request $request, PasteRepository $pasteRepository, EncoderFactoryInterface $encoderFactory, RecaptchaService $recaptchaService) {
         if ($this->getUser() != null) {
             return $this->render("index.html.twig");
         }
@@ -47,7 +53,8 @@ class SecurityController extends AbstractController {
                 $form->addError(new FormError("Are you a robot? Make captcha"));
                 return $this->render("security/register.html.twig", [
                     "form" => $form->createView(),
-                    "recaptcha" => getenv("RECAPTCHA_SITEKEY")
+                    "recaptcha" => getenv("RECAPTCHA_SITEKEY"),
+                    'sidebar' => $pasteRepository->getSidebar()
                 ]);
             }
 
@@ -55,7 +62,8 @@ class SecurityController extends AbstractController {
                 $form->addError(new FormError("Username can't contain spaces"));
                 return $this->render("security/register.html.twig", [
                     "form" => $form->createView(),
-                    "recaptcha" => getenv("RECAPTCHA_SITEKEY")
+                    "recaptcha" => getenv("RECAPTCHA_SITEKEY"),
+                    'sidebar' => $pasteRepository->getSidebar()
                 ]);
             }
 
@@ -69,7 +77,8 @@ class SecurityController extends AbstractController {
                 $form->addError(new FormError("User with this username already exists"));
                 return $this->render("security/register.html.twig", [
                     "form" => $form->createView(),
-                    "recaptcha" => getenv("RECAPTCHA_SITEKEY")
+                    "recaptcha" => getenv("RECAPTCHA_SITEKEY"),
+                    'sidebar' => $pasteRepository->getSidebar()
                 ]);
             }
 
@@ -77,7 +86,8 @@ class SecurityController extends AbstractController {
                 $form->addError(new FormError("User with this mail already exists"));
                 return $this->render("security/register.html.twig", [
                     "form" => $form->createView(),
-                    "recaptcha" => getenv("RECAPTCHA_SITEKEY")
+                    "recaptcha" => getenv("RECAPTCHA_SITEKEY"),
+                    'sidebar' => $pasteRepository->getSidebar()
                 ]);
             }
 
@@ -92,7 +102,8 @@ class SecurityController extends AbstractController {
         }
         return $this->render("security/register.html.twig", [
             "form" => $form->createView(),
-            "recaptcha" => getenv("RECAPTCHA_SITEKEY")
+            "recaptcha" => getenv("RECAPTCHA_SITEKEY"),
+            'sidebar' => $pasteRepository->getSidebar()
         ]);
     }
 

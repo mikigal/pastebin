@@ -43,10 +43,16 @@
     <div id="sidebar" class="optional">
         <h1>Last Pastes</h1>
 
-        {% for i in 1..8 %}
+        {% for paste in sidebar %}
             <div class="separator"></div>
-            <a href="#">Placeholder</a>
-            <p>Java | {{ i }} minutes ago</p>
+            <a href="{{ path('app_paste', {name: paste.name}) }}">
+                {% if paste.title != null %}
+                    {{ paste.title }}
+                {% else %}
+                    Untitled
+                {% endif %}
+             </a>
+            <p>{{ paste.syntax }} | {{ paste.uploadDate|ago }} </p>
         {% endfor %}
 
         <div class="separator"></div>

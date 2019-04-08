@@ -24,4 +24,13 @@ class PasteRepository extends ServiceEntityRepository {
             ->getQuery()
             ->getOneOrNullResult();
     }
+
+    public function getSidebar(): array {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.visibility = 1')
+            ->setMaxResults(8)
+            ->orderBy('p.upload_date', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
 }
