@@ -9,4 +9,6 @@ Simply pastebin coded for education purposes
  - MySQL
 
 ## TODO
- - Everything
+ - User panel
+ - Syntax highlight
+ - Bug fixes and refactoring
