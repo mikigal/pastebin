@@ -10,7 +10,6 @@ use App\Service\RecaptchaService;
 use App\Utils\Utils;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
-use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,14 +26,14 @@ class RootController extends AbstractController {
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            /*if (!$recaptchaService->checkCaptcha($request->get('g-recaptcha-response'))) {
+            if (!$recaptchaService->checkCaptcha($request->get('g-recaptcha-response'))) {
                 $form->addError(new FormError('Are you a robot? Make captcha'));
                 return $this->render('index.html.twig', [
                     'form' => $form->createView(),
                     'recaptcha' => getenv('RECAPTCHA_SITEKEY'),
                     'sidebar' => $pasteRepository->getSidebar()
                 ]);
-            }*/
+            }
 
             if (strlen(preg_replace('/\s/', '', $paste->getContent())) == 0) {
                 $form->addError(new FormError('Content cant be empty'));
@@ -69,13 +68,18 @@ class RootController extends AbstractController {
     /**
      * @Route("/view/{name}", name="app_paste")
      */
-    public function paste(string $name, PasteRepository $pasteRepository, UserRepository $userRepository, LoggerInterface $logger) {
+    public function paste(string $name, PasteRepository $pasteRepository, UserRepository $userRepository) {
         $paste = $pasteRepository->findOneByName($name);
         if ($paste == null) {
             return $this->render('paste.html.twig', [
                 'paste' => null,
                 'sidebar' => $pasteRepository->getSidebar()
             ]);
+        }
+
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        if ($paste->getVisibility() == 3 && ($user == "anon." || $paste->getOwner() != $user->getId())) {
+            return $this->redirectToRoute('app_login');
         }
 
         return $this->render('paste.html.twig', [
