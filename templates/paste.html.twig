@@ -4,9 +4,18 @@
 {% endblock %}
 
 {% block body %}
-    {% if not_found %}
+    {% if paste == null %}
         <h1>Paste not found</h1>
     {% else %}
-        {{ content }}
+        <div id="paste">
+            {% if paste.title != null %}
+                <h1>{{ paste.title }}</h1>
+            {% endif %}
+            <ol>
+                {% for line in content %}
+                    <li>{{ line }}</li>
+                {% endfor %}
+            </ol>
+        </div>
     {% endif %}
 {% endblock %}

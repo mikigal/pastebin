@@ -43,7 +43,7 @@ class RootController extends AbstractController {
             $user = $this->get('security.token_storage')->getToken()->getUser();
             $paste->setOwner($user == 'anon.' ? null : $user->getId());
             $paste->setUploadDate(new DateTime());
-            $paste->setContent(base64_encode($paste->getContent()));
+            $paste->setContent(base64_encode(str_replace(array("\r\n", "\r", "\n"), "[new-line]", $paste->getContent())));
             $paste->setName(Utils::getRandomString(10));
 
             $entityManager = $this->getDoctrine()->getManager();
@@ -63,19 +63,19 @@ class RootController extends AbstractController {
 
 
     /**
-     * @Route("/{name}", name="app_paste")
+     * @Route("/view/{name}", name="app_paste")
      */
     public function paste(string $name) {
         $paste = $this->getDoctrine()->getRepository(Paste::class)->findOneByName($name);
         if ($paste == null) {
             return $this->render('paste.html.twig', [
-                'not_found' => true
+                'paste' => null
             ]);
         }
 
         return $this->render('paste.html.twig', [
-            'not_found' => false,
-            'content' => base64_decode($paste->getContent())
+            'content' => explode('[new-line]', base64_decode($paste->getContent())),
+            'paste' => $paste
         ]);
     }
 }
