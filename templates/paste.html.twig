@@ -8,9 +8,22 @@
         <h1>Paste not found</h1>
     {% else %}
         <div id="paste">
-            {% if paste.title != null %}
-                <h1>{{ paste.title }}</h1>
-            {% endif %}
+            <div id="header">
+                <img src="{{ asset('images/guest.png') }}" alt=""/> <!-- TODO: User avatars -->
+                <div id="data">
+                    <h1>
+                        {% if paste.title != null %}
+                            {{ paste.title }}
+                        {% else %}
+                             Untitled
+                        {% endif %}
+                    </h1>
+                    <div id="row">
+                        <p id="username">{{ username }}</p>
+                        <p id="date">{{ paste.uploadDate.format('d M Y G:i') }}</p>
+                    </div>
+                </div>
+            </div>
             <ol>
                 {% for line in content %}
                     <li>{{ line }}</li>

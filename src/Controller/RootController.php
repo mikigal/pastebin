@@ -4,9 +4,11 @@ namespace App\Controller;
 
 use App\Entity\Paste;
 use App\Form\PasteType;
+use App\Repository\UserRepository;
 use App\Service\RecaptchaService;
 use App\Utils\Utils;
 use DateTime;
+use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormError;
@@ -61,11 +63,10 @@ class RootController extends AbstractController {
         ]);
     }
 
-
     /**
      * @Route("/view/{name}", name="app_paste")
      */
-    public function paste(string $name) {
+    public function paste(string $name, UserRepository $userRepository) {
         $paste = $this->getDoctrine()->getRepository(Paste::class)->findOneByName($name);
         if ($paste == null) {
             return $this->render('paste.html.twig', [
@@ -75,7 +76,8 @@ class RootController extends AbstractController {
 
         return $this->render('paste.html.twig', [
             'content' => explode('[new-line]', base64_decode($paste->getContent())),
-            'paste' => $paste
+            'paste' => $paste,
+            'username' => $paste->getOwner() != null ? $userRepository->findOneBy(['id' => $paste->getOwner()])->getUsername() : 'Guest'
         ]);
     }
 }

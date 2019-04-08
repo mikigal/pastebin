@@ -120,11 +120,45 @@ form {
 }
 
 #paste {
-	h1 {
-		margin-left: 4vw;
-		margin-bottom: 0;
-		font-size: 25px;
-		margin-top: 8px;
+	margin-left: 4vw;
+
+	#header {
+
+		img {
+			width: 40px;
+			height: 40px;
+			margin-right: 10px;
+			display: inline-block;
+		}
+
+		#data {
+			display: inline-block;
+			height: 40px;
+
+			h1 {
+				margin-bottom: 0;
+				font-size: 18px;
+			}
+
+			#row {
+				@extend .flex;
+			}
+
+			p {
+				margin-top: 5px;
+			}
+
+			#username::before {
+				@extend .icon;
+				content: '\f007';
+			}
+
+			#date::before {
+				@extend .icon;
+				content: '\f073';
+				margin-left: 10px;
+			}
+		}
 	}
 
 	ol {
@@ -133,7 +167,6 @@ form {
 		color: #666666;
 		margin-top: 8px;
 		border: 1px solid #AAA;
-		margin-left: 4vw;
 
 		li {
 			border-left: 1px solid #AAA;

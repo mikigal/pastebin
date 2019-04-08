@@ -1,11 +1,12 @@
+@charset "UTF-8";
 @import "fonts/fonts.css";
-.flex, form #widgets, form #labels {
+.flex, #paste #header #data #row, form #widgets, form #labels {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.icon {
+.icon, #paste #header #data #date::before, #paste #header #data #username::before {
   font-family: "Font Awesome 5 Free", serif;
   font-weight: 900;
   margin-right: 5px;
@@ -118,11 +119,32 @@ form #error ul li {
   margin-bottom: 9999px;
 }
 
-#paste h1 {
+#paste {
   margin-left: 4vw;
+}
+#paste #header img {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  display: inline-block;
+}
+#paste #header #data {
+  display: inline-block;
+  height: 40px;
+}
+#paste #header #data h1 {
   margin-bottom: 0;
-  font-size: 25px;
-  margin-top: 8px;
+  font-size: 18px;
+}
+#paste #header #data p {
+  margin-top: 5px;
+}
+#paste #header #data #username::before {
+  content: "";
+}
+#paste #header #data #date::before {
+  content: "";
+  margin-left: 10px;
 }
 #paste ol {
   font-family: Consolas, Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", monospace, serif;
@@ -130,7 +152,6 @@ form #error ul li {
   color: #666666;
   margin-top: 8px;
   border: 1px solid #AAA;
-  margin-left: 4vw;
 }
 #paste ol li {
   border-left: 1px solid #AAA;
