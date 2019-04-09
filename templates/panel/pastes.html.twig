@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+{% block head %}
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
+    <title>Pastes list</title>
+{% endblock %}
+
+{% block body %}
+    {% if removed == true %}
+        <h1 id="removed">Paste has been removed</h1>
+    {% endif %}
+    <table>
+
+        <tr>
+            <th>Title</th>
+            <th>Upload date</th>
+            <th>Visibility</th>
+            <th>Syntax</th>
+            <th>Actions</th>
+        </tr>
+        {% for paste in pastes %}
+            <tr>
+                <td class="title">
+                    <a href="{{ path('app_paste', {name: paste.name}) }}">
+                        {% if paste.title != null %}
+                            {{ paste.title }}
+                        {%  else %}
+                            Untitled
+                        {%  endif %}
+                    </a>
+                </td>
+
+                <td>{{ paste.uploadDate.format('d M Y G:i') }}</td>
+
+                <td>
+                    {% if paste.visibility == 1 %}
+                        Public
+                    {% elseif paste.visibility == 2 %}
+                        Unlisted
+                    {% else %}
+                        Private
+                    {% endif %}
+                </td>
+
+                <td>{{ paste.syntax }}</td>
+                <td><a class="remove" href="{{ path('app_delete', {name: paste.name}) }}"></a></td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

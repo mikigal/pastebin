@@ -45,6 +45,15 @@ class RootController extends AbstractController {
             }
 
             $user = $this->get('security.token_storage')->getToken()->getUser();
+            if ($paste->getVisibility() == 3 && $user == 'anon.') {
+                $form->addError(new FormError('You must be logged to create private paste'));
+                return $this->render('index.html.twig', [
+                    'form' => $form->createView(),
+                    'recaptcha' => getenv('RECAPTCHA_SITEKEY'),
+                    'sidebar' => $pasteRepository->getSidebar()
+                ]);
+            }
+
             $paste->setOwner($user == 'anon.' ? null : $user->getId());
             $paste->setUploadDate(new DateTime());
             $paste->setContent(base64_encode(str_replace(array("\r\n", "\r", "\n"), "[new-line]", $paste->getContent())));

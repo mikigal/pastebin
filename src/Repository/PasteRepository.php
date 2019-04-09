@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Paste;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -25,7 +26,15 @@ class PasteRepository extends ServiceEntityRepository {
             ->getOneOrNullResult();
     }
 
-    public function getSidebar(): array {
+    public function findUserPastes(User $user) {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.owner = :owner')
+            ->setParameter('owner', $user->getId())
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function getSidebar() {
         return $this->createQueryBuilder('p')
             ->andWhere('p.visibility = 1')
             ->setMaxResults(8)

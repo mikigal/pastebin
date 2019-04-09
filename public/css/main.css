@@ -6,7 +6,7 @@
   align-items: center;
 }
 
-.icon, #paste #header #data #date::before, #paste #header #data #username::before {
+.icon, table .remove::before, #paste #header #data #date::before, #paste #header #data #username::before {
   font-family: "Font Awesome 5 Free", serif;
   font-weight: 900;
   margin-right: 5px;
@@ -23,6 +23,7 @@
   margin-right: 5px;
 }
 
+/* Root view */
 form h1 {
   margin-top: 10px;
   margin-bottom: 5px;
@@ -119,6 +120,7 @@ form #error ul li {
   margin-bottom: 9999px;
 }
 
+/* Paste view */
 #paste {
   margin-left: 4vw;
 }
@@ -156,6 +158,32 @@ form #error ul li {
 #paste ol li {
   border-left: 1px solid #AAA;
   padding-left: 5px;
+}
+
+/* Pastes list view */
+#removed {
+  color: #C03;
+  font-size: 25px;
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+table {
+  width: 100%;
+}
+table th {
+  color: #C03;
+}
+table a {
+  color: blue;
+}
+table .remove::before {
+  content: "";
+  color: black;
+}
+table tr {
+  text-align: center;
 }
 
 /*# sourceMappingURL=main.css.map */

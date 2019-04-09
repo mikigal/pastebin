@@ -1,6 +1,7 @@
 @import "utils";
 @import "fonts/fonts.css";
 
+/* Root view */
 form {
 	h1 {
 		margin-top: 10px;
@@ -119,6 +120,7 @@ form {
 	}
 }
 
+/* Paste view */
 #paste {
 	margin-left: 4vw;
 
@@ -172,5 +174,36 @@ form {
 			border-left: 1px solid #AAA;
 			padding-left: 5px;
 		}
+	}
+}
+
+/* Pastes list view */
+
+#removed {
+	color: #C03;
+	font-size: 25px;
+	text-align: center;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+table {
+	width: 100%;
+
+	th {
+		color: #C03;
+	}
+
+  	a {
+		color: blue;
+	}
+	.remove::before {
+		@extend .icon;
+		content: '\f2ed';
+		color: black;
+	}
+
+	tr {
+		text-align: center;
 	}
 }
