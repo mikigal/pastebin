@@ -1,6 +1,6 @@
 @charset "UTF-8";
 @import "fonts/fonts.css";
-.flex, #paste #header #data #row, form #widgets, form #labels {
+.flex, #panel, #paste #header #data #row, form #widgets, form #labels {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -64,7 +64,7 @@ form #widgets {
   flex-direction: column;
   align-items: flex-start;
 }
-form input[type=text] {
+form input[type=text], form input[type=password] {
   border-radius: 2px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   border: 1px solid #AAA;
@@ -183,6 +183,27 @@ table .remove::before {
   color: black;
 }
 table tr {
+  text-align: center;
+}
+
+/* Panel view */
+#panel {
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+#panel img {
+  width: 128px;
+  height: 128px;
+}
+#panel h2, #panel h3 {
+  margin: 3px;
+}
+
+#password-error {
+  color: #C03;
+  width: 100%;
   text-align: center;
 }
 

@@ -23,8 +23,8 @@
         <a href="{{ path('app_panel') }}"><i class="fas fa-cog"></i></a>
 
         {% if app.user %}
-            <a href="{{ path('app_panel') }}" id="username">{{ app.user.username }}</a>
-            <a href="{{ path('app_panel') }}"><img src="{{ asset('images/guest.png') }}" alt=""/></a> <!-- TODO: User avatars -->
+            <a href="{{ path('app_pastes') }}" id="username">{{ app.user.username }}</a>
+            <a href="{{ path('app_pastes') }}"><img src="{{ asset('images/guest.png') }}" alt=""/></a> <!-- TODO: User avatars -->
             <a href="{{ path('app_logout') }}"><i class="fas fa-sign-out-alt"></i></a>
         {% else %}
             <a href="{{ path('app_login') }}" id="username">Guest user</a>

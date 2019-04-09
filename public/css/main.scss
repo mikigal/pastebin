@@ -54,7 +54,7 @@ form {
 		align-items: flex-start;
 	}
 
-	input[type=text] {
+	input[type=text], input[type=password] {
 		border-radius: 2px;
 		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 		border: 1px solid #AAA;
@@ -207,3 +207,27 @@ table {
 		text-align: center;
 	}
 }
+
+/* Panel view */
+#panel {
+	@extend .flex;
+	flex-direction: row;
+	justify-content: space-between;
+	padding-left: 10%;
+	padding-right: 10%;
+
+	img {
+		width: 128px;
+		height: 128px;
+	}
+
+	h2, h3 {
+		margin: 3px;
+	}
+}
+
+#password-error {
+	 color: #C03;
+	 width: 100%;
+	 text-align: center;
+ }

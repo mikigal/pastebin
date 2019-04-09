@@ -1,5 +1,5 @@
 # pastebin
-Simply pastebin coded for education purposes
+Simply pastebin coded for education purposes. It looks like it works.
 
 ## Used technologies
  - PHP 7
@@ -9,6 +9,4 @@ Simply pastebin coded for education purposes
  - MySQL
 
 ## TODO
- - User panel
- - Syntax highlight
- - Bug fixes and refactoring
+ - Avatars

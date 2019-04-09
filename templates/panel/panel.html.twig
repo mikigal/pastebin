@@ -1,9 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>pastebin</title>
-</head>
-<body>
-    Panel
-</body>
-</html>
+{% extends 'base.html.twig' %}
+{% block head %}
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
+    <title>Pastes list</title>
+{% endblock %}
+
+{% block body %}
+    <h1>Settings</h1>
+    {% if password == 1 %}
+        <h3 id="password-error">Password change successfully</h3>
+    {% elseif password == 2 %}
+        <h3 id="password-error">Password does not match</h3>
+    {% elseif password == 3 %}
+        <h3 id="password-error">Invalid old password</h3>
+    {% elseif password == 4 %}
+        <h3 id="password-error">Old password cant be the same as new</h3>
+    {% endif %}
+    <div id="panel">
+        <div>
+            <img src="{{ asset('images/guest.png') }}" alt="" />
+            <h2>{{ app.user.username }}</h2>
+            <h3>Join date: {{ app.user.registerDate.format('d M Y') }}</h3>
+            <h3>Mail: {{ app.user.mail }}</h3>
+        </div>
+        <form method="post" action="{{ path('app_password', {id: app.user.id}) }}" >
+            <div id="inputs" class="test">
+                <div id="labels">
+                    <label for="old">Old password</label>
+                    <label for="new">New password</label>
+                    <label for="repeat">Repeat new password</label>
+                </div>
+                <div id="widgets">
+                    <input id="old"  name="old" type="password" />
+                    <input id="new" name="new" type="password" />
+                    <input id="repeat" name="repeat" type="password" />
+                    <input type="submit" value="Change password" />
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}
