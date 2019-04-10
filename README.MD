@@ -10,3 +10,5 @@ Simply pastebin coded for education purposes. It looks like it works.
 
 ## TODO
  - Avatars
+ 
+![Screenshot](/screenshot.png?raw=true)
