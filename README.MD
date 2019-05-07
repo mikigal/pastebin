@@ -10,5 +10,6 @@ Simply pastebin coded for education purposes. It looks like it works.
 
 ## TODO
  - Avatars
+ - REST API endpoint for creating pastes
  
 ![Screenshot](/screenshot.png?raw=true)
